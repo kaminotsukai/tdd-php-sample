@@ -1,0 +1,1 @@
+{"version":1,"defects":{"Tests\\MoneyTest::testEquals":4},"times":{"Tests\\MoneyTest::testMultiplication":0.002,"Tests\\MoneyTest::testEquals":0}}
