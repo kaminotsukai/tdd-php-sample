@@ -1,1 +1,1 @@
-{"version":1,"defects":{"Tests\\MoneyTest::testEquals":4,"Tests\\MoneyTest::testMultiplication":4,"Tests\\MoneyTest::testFrancMultiplication":4},"times":{"Tests\\MoneyTest::testMultiplication":0.002,"Tests\\MoneyTest::testEquals":0,"Tests\\MoneyTest::testFrancMultiplication":0}}
+{"version":1,"defects":{"Tests\\MoneyTest::testEquals":4,"Tests\\MoneyTest::testMultiplication":4,"Tests\\MoneyTest::testFrancMultiplication":4},"times":{"Tests\\MoneyTest::testMultiplication":0.003,"Tests\\MoneyTest::testEquals":0,"Tests\\MoneyTest::testFrancMultiplication":0}}
