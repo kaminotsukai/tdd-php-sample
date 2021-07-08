@@ -4,10 +4,13 @@ namespace Tests;
 
 use PHPUnit\Framework\TestCase;
 use Src\Dollar;
+use Src\Franc;
 
 /**
  * TODO
- * - [x] $5 + 10CHF = $10（レートが2:1の場合）
+ * - [ ] $5 + 10CHF = $10（レートが2:1の場合）
+ * - [x] $5 * 2 = $10
+ * - [x] 5 CHF * 2 = 10CHF
  * - [x] equals()
  * - [ ] Moneyの丸め処理どうする？
  * - [ ] hashCode()
@@ -17,15 +20,13 @@ use Src\Dollar;
 class MoneyTest extends TestCase
 {
     /**
-     * $5 + 10CHF = $10（レートが2:1の場合）
+     * $5 * 2 = $10
      */
     public function testMultiplication()
     {
         $five = new Dollar(5);
-        $product = $five->times(2);
-        $this->assertEquals(10, $product->ammount());
-        $product = $five->times(3);
-        $this->assertEquals(15, $product->ammount());
+        $this->assertEquals(new Dollar(10), $five->times(2));
+        $this->assertEquals(new Dollar(15), $five->times(3));
     }
 
     /**
@@ -38,5 +39,17 @@ class MoneyTest extends TestCase
         $dollar = new Dollar(5);
         $this->assertTrue($dollar->equals(new Dollar(5)));
         $this->assertFalse($dollar->equals(new Dollar(6)));
+    }
+
+    /**
+     * 5 CHF * 2 = 10CHF
+     *
+     * @return void
+     */
+    public function testFrancMultiplication()
+    {
+        $five = new Franc(5);
+        $this->assertEquals(new Franc(10), $five->times(2));
+        $this->assertEquals(new Franc(15), $five->times(3));
     }
 }
