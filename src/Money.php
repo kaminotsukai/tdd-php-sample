@@ -2,13 +2,15 @@
 
 namespace Src;
 
-abstract class Money
+class Money
 {
     protected int $amount;
+    protected string $currency;
 
-    public function __construct(int $amount)
+    public function __construct(int $amount, string $currency)
     {
         $this->amount = $amount;
+        $this->currency = $currency;
     }
 
     public function ammount(): int
@@ -16,20 +18,28 @@ abstract class Money
         return $this->amount;
     }
 
-    public static function dollar(int $money): Dollar
+    public function currency(): string
     {
-        return new Dollar($money);
+        return $this->currency;
     }
 
-    public static function franc(int $money): Franc
+    public static function dollar(int $money): Money
     {
-        return new Franc($money);
+        return new Money($money, 'USD');
     }
 
-    abstract public function times(int $multiplier): Money;
+    public static function franc(int $money): Money
+    {
+        return new Money($money, 'CHF');
+    }
+
+    public function times(int $multiplier): Money
+    {
+        return new Money($this->amount * $multiplier, $this->currency);
+    }
 
     public function equals(object $object): bool
     {
-        return (get_class($object) === get_class($this)) && ($this->amount === $object->amount);
+        return ($this->currency === $object->currency) && ($this->amount === $object->amount);
     }
 }

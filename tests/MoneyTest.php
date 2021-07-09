@@ -3,8 +3,6 @@
 namespace Tests;
 
 use PHPUnit\Framework\TestCase;
-use Src\Dollar;
-use Src\Franc;
 use Src\Money;
 
 /**
@@ -17,6 +15,7 @@ use Src\Money;
  * - [ ] hashCode()
  * - [ ] NULLとの等価性比較
  * - [ ] 他のオブジェクトとの等価性比較
+ * - [x] 通過の概念
  */
 class MoneyTest extends TestCase
 {
@@ -26,8 +25,8 @@ class MoneyTest extends TestCase
     public function testMultiplication()
     {
         $five = Money::dollar(5);
-        $this->assertEquals(new Dollar(10), $five->times(2));
-        $this->assertEquals(new Dollar(15), $five->times(3));
+        $this->assertEquals(Money::dollar(10), $five->times(2));
+        $this->assertEquals(Money::dollar(15), $five->times(3));
     }
 
     /**
@@ -54,5 +53,14 @@ class MoneyTest extends TestCase
         $five = Money::franc(5);
         $this->assertEquals(Money::franc(10), $five->times(2));
         $this->assertEquals(Money::franc(15), $five->times(3));
+    }
+
+    /**
+     * 通貨単位の判定
+     */
+    public function testCurrency()
+    {
+        $this->assertEquals('USD', Money::dollar(10)->currency());
+        $this->assertEquals('CHF', Money::franc(10)->currency());
     }
 }
